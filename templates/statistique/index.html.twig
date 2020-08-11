@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block body %}
+
+    <table class="table" border="5" bordercolor="red" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>joueur</th>
+            <th>buts</th>
+            <th>club</th>
+            <th>saison</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for stat in stats %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ stat.joueur }}</td>
+                <td>{{ stat.nombre }}</td>
+                <td>{{ stat.club }} <img class="pull-right" src="{{ asset(stat.club.logos[0].path) }}" alt="" style="width: 50px; height: 50px;" /></td>
+                <td>{{ stat.saison }}</td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas encore de statistiques dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

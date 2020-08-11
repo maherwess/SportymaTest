@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Joueurs{% endblock %}
+
+{% block body %}
+    {#<div class="jumbotron">#}
+    {#<div class="container">#}
+    {#{{ form_start(form) }}#}
+
+    {#<div class="form-group">#}
+    {#<div class="col-sm-6">#}
+    {#{{ form_row(form.dateDebut) }}#}
+    {#</div>#}
+    {#<div class="col-sm-6">#}
+    {#{{ form_row(form.dateFin) }}#}
+    {#</div>#}
+    {#<div class="col pull-right">#}
+    {#<button class="btn btn-primary">Rechercher</button>#}
+    {#</div>#}
+    {#</div>#}
+
+    {#{{ form_end(form) }}#}
+    {#</div>#}
+    {#</div>#}
+
+    {#<div class="jumbotron">#}
+        {#<div class="container">#}
+            {#{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+
+            {#<div class="form-group">#}
+                {#<div class="col-sm-6">#}
+                    {#{{ form_row(form.saison) }}#}
+                {#</div>#}
+                {#<div class="col pull-right">#}
+                    {#<button class="btn btn-primary">Rechercher</button>#}
+                {#</div>#}
+            {#</div>#}
+
+            {#{{ form_end(form) }}#}
+        {#</div>#}
+    {#</div>#}
+
+
+
+    <table class="table" border="5" bordercolor="red" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>nom</th>
+            <th>prénom</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for joueur in joueurs %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ joueur.nom }}</td>
+                <td>{{ joueur.prenom }}</td>
+                <td>
+                    <a href="{{ path('statistique', {'id': joueur.id }) }}">Statistiques</a>
+                </td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas encore de joueurs dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

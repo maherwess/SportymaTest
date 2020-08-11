@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des logos{% endblock %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    {{ form_row(form.dateDebut) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.dateFin) }}
+                </div>
+                <div class="col pull-right">
+                    <button class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    <table class="table" border="5" bordercolor="red" align="center">
+        <thead>
+        <tr>
+            <th></th>
+            <th>club</th>
+            <th>date</th>
+            <th>logo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for logo in historiques %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ logo.club }}</td>
+                <td>{{ logo.createdAt|date('d-m-Y') }}</td>
+                <td><img class="pull-right" src="{{ asset(logo.path) }}" alt="" style="width: 50px; height: 50px;" /></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de statistiques dans la base de données</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
