@@ -18,6 +18,7 @@ class JoueurController extends AbstractController
     public function index(JoueurRepository $joueurRepository, $id=null): Response
     {
 
+        //Vérifier si on a un filtre par joueur sinon interroger ka base pour avoir tout les joueurs
         if($id){
             $joueurs = $joueurRepository->findByClub($id);
         }else{

@@ -37,11 +37,13 @@ class StatistiqueController extends AbstractController
     public function historiqueAction(LogoRepository $logoRepository, $id=null, Request $request): Response
     {
 
-        //Initialiser un object de recherche
+        //Initialiser un object de recherche pour filtrer l'historique des logos par une date de début et une date de fin
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class,$search);
         $form->handleRequest($request);
 
+        //Vérifier si on a un filtre par club pour avoir l'historique de logos pour ce club
+        // sinon interroger ka base pour avoir tout les historiques de logos
         if($id){
             $historiques = $logoRepository->findLogosByClub($id,$search);
         }else{
